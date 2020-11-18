@@ -1,5 +1,10 @@
-//
-// Created by Andrew Silkwood on 11/17/2020.
-//
 
-#include "graph.h"
+struct Edge {
+    int value;
+    Edge *next;
+};
+
+struct Vertex {
+    int key;
+    Edge *edge;
+};
