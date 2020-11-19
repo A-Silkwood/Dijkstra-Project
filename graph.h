@@ -1,14 +1,10 @@
 #ifndef DIJKSTRAPROJECT_GRAPH_H
 
-struct Edge {
-    int value;
-    Edge *next;
-};
+struct Edge; struct Vertex {int id; int key; Edge *edge;};
+struct Edge {int weight; Vertex *target; Edge *next;};
 
-struct Vertex {
-    int key;
-    Edge *edge;
-};
+void initAdjacencyList(Vertex ** list, int verts, int edges);
+void showList(Vertex **list, int verts);
 
 #define DIJKSTRAPROJECT_GRAPH_H
 
