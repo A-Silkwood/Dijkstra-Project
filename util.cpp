@@ -41,7 +41,7 @@ std::string split(std::string str, char delim, int start, int end) {
     }
 
     if(start > delimCount) {startIx = str.length();} // start delim out of bounds
-    if(end > delimCount) {endIx = str.length();} else {endIx = ix;} // end delim
+    if(end > delimCount) {endIx = ix;} else {endIx = ix-1;} // end delim
 
     // return string split
     return str.substr(startIx + 1, endIx - startIx - 1);
