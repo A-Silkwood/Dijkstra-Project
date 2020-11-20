@@ -25,18 +25,12 @@ void initAdjacencyList(Vertex ** list, int verts, int edges) {
 
         // initialize edge
         Edge *edge = new Edge;
-        edge->next = NULL;
         edge->target = list[v];
         edge->weight = w;
 
-        // find edge location in list and place it
-        Edge *curr = list[u]->edge;
-        if (curr == NULL) {
-            list[u]->edge = edge;
-        } else {
-            while (curr->next != NULL) { curr = curr->next; }
-            curr->next = edge;
-        }
+        // insert edge
+        edge->next = list[u]->edge;
+        list[u]->edge = edge;
     }
 }
 
