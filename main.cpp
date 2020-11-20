@@ -25,7 +25,7 @@ void Write(Vertex **list, int verts, int edges) {
                 std::cout << "(" << curr->target->id << "; " << curr->weight << "); ";
                 curr = curr->next;
             }
-            std::cout << "(" << curr->target->id << "; " << curr->weight << std::endl;
+            std::cout << "(" << curr->target->id << "; " << curr->weight << ")" << std::endl;
         }
     }
 }
