@@ -2,8 +2,8 @@
 
 #include <string>
 
-int stoi(std::string str);
-float stof(std::string str);
+int stroi(std::string str);
+float strof(std::string str);
 
 std::string split(std::string str, char delim, int start, int end);
 

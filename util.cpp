@@ -3,7 +3,7 @@
 #include <sstream>
 
 // convert string to integer
-int stoi(std::string str) {
+int stroi(std::string str) {
     std::stringstream stream(str);
     int num;
     stream >> num;
@@ -11,7 +11,7 @@ int stoi(std::string str) {
 }
 
 // convert string to float
-int stof(std::string str) {
+int strof(std::string str) {
     std::stringstream stream(str);
     float num;
     stream >> num;

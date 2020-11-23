@@ -111,8 +111,8 @@ int main() {
 
     // get vertex and edge count
     getline(std::cin, input);
-    int verts = stoi(split(input, ' ', 0, 1));
-    int edges = stoi(split(input, ' ', 1, 2));
+    int verts = stroi(split(input, ' ', 0, 1));
+    int edges = stroi(split(input, ' ', 1, 2));
 
     // create adjacency list
     Vertex **adjacencyList = new Vertex*[verts];
@@ -127,9 +127,9 @@ int main() {
         // execute command
         std::cout << "Command: " << input << std::endl;
         if(command == "find") {
-            int s = stoi(split(input, ' ', 1, 2));
-            int t = stoi(split(input, ' ', 2, 3));;
-            int flag = stoi(split(input, ' ', 3, 4));;
+            int s = stroi(split(input, ' ', 1, 2));
+            int t = stroi(split(input, ' ', 2, 3));;
+            int flag = stroi(split(input, ' ', 3, 4));;
             Find(adjacencyList, verts, s - 1, t - 1, flag); // find the shortest path
         } else if(command == "write") {
             Write(adjacencyList, verts, edges); // write the graph to output
