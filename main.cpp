@@ -70,7 +70,7 @@ void Write(Vertex **list, int verts, int edges) {
 
     // print out each vertex with its edges
     for(int i = 0; i < verts; i++) {
-        std::cout << i << " :";
+        std::cout << i + 1 << " :";
 
         Edge *curr = list[i]->edge;
         if (curr != NULL) {
