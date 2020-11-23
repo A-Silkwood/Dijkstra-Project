@@ -1,20 +1,14 @@
 #include <iostream>
-#include "graph.h"
+#include "heap.h"
+
+const int INT_INF = 2147483647;
 
 // return position of the parent in a min-heap
-int Parent(int i) {
-    return (i - 1) / 2;
-}
-
+int Parent(int i) {return (i - 1) / 2;}
 // return position of the left child in a min-heap
-int Left(int i) {
-    return 2 * i + 1;
-}
-
+int Left(int i) {return 2 * i + 1;}
 // return position of the right child in a min-heap
-int Right(int i) {
-    return 2 * i + 2;
-}
+int Right(int i) {return 2 * i + 2;}
 
 // maintain the min-heap property at given position
 // assumes its left and right subtrees are min-heaps
@@ -25,8 +19,8 @@ void MinHeapify(Vertex **heap, int i, int n) {
 
     // find the smallest key between a parent and its left and right child
     int smallest = i;
-    if(l <= n && heap[l]->key < heap[smallest]->key) {smallest = l;}
-    if(r <= n && heap[r]->key < heap[smallest]->key) {smallest = r;}
+    if(l <= n && heap[l]->dist < heap[smallest]->dist) {smallest = l;}
+    if(r <= n && heap[r]->dist < heap[smallest]->dist) {smallest = r;}
 
     // correct min-heap if the parent does not have the smallest key
     if(smallest != i) {
@@ -57,9 +51,7 @@ void Insert(Vertex **heap, Vertex *vertex) {
 }
 
 // returns the vertex with the smallest key
-Vertex* Minimum(Vertex **heap) {
-    return heap[0];
-}
+Vertex* Minimum(Vertex **heap) {return heap[0];}
 
 // returns and removes the vertex with the smallest key
 Vertex* ExtractMin(Vertex **heap) {
@@ -80,8 +72,8 @@ Vertex* ExtractMin(Vertex **heap) {
 // changes the key of a vertex to a value less than or equal to its current key
 void DecreaseKey(Vertex **heap, Vertex *vertex, int key) {
     // check if key is less than
-    if(key < vertex->key) {
-        vertex->key = key; // change key
+    if(key < vertex->dist) {
+        vertex->dist = key; // change key
 
         // find array length
         int n = 0;
@@ -89,5 +81,24 @@ void DecreaseKey(Vertex **heap, Vertex *vertex, int key) {
 
         // rebuild min-heap
         BuildMinHeap(heap, n);
+    }
+}
+
+// initializes a min-heap for a graph
+void InitSingleSource(Vertex **list, int verts, int s) {
+    for(int i = 0; i < verts; i++) {
+        // initialize a node for each vertex
+        list[i]->dist = INT_INF; // not reachable
+        list[i]->pred = -1; // no predecessor
+    }
+    // set start node distance to 0
+    list[s]->dist = 0;
+}
+
+// relaxes distance if a new path is found to be shorter
+void Relax(Vertex **list, int u, int v, int weight) {
+    if(list[v]->dist > list[u]->dist + weight) {
+        list[v]->dist = list[u]->dist + weight; // relax distance
+        list[v]->pred = u; // set new predecessor
     }
 }
