@@ -8,10 +8,10 @@
 const int INT_INF = 2147483647;
 
 void PrintPath(Vertex **list, int t) {
-    if(list[t]->pred != -1) {
+    if(t != -1) {
         PrintPath(list, list[t]->pred);
+        std::cout << t + 1 << ";";
     }
-    std::cout << t + 1 << ";";
 }
 
 // finds the shortest path from one to another
@@ -33,7 +33,7 @@ void Find(Vertex **list, int verts, int s, int t, int flag) {
             std::cout << "LENGTH: " << list[t]->dist << std::endl;
         } else if(flag == 0) {
             std::cout << "Path: ";
-            PrintPath(list, list[t]->pred);
+            if(t != -1) {PrintPath(list, list[t]->pred);}
             std::cout << t + 1 << std::endl;
         }
     }
