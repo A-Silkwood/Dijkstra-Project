@@ -29,9 +29,9 @@ void Find(Vertex **list, int verts, int s, int t, int flag) {
         if(list[t]->dist == INT_INF) {
             // not reachable
             std::cout << "Error: node " << t + 1 << " not reachable from node " << s + 1 << std::endl;
-        } else if(flag == 0) {
-            std::cout << "LENGTH: " << list[t]->dist << std::endl;
         } else if(flag == 1) {
+            std::cout << "LENGTH: " << list[t]->dist << std::endl;
+        } else if(flag == 0) {
             std::cout << "Path: ";
             PrintPath(list, list[t]->pred);
             std::cout << t + 1 << std::endl;
@@ -104,8 +104,8 @@ int main() {
         std::cout << "Command: " << input << std::endl;
         if(command == "find") {
             int s = stroi(split(input, ' ', 1, 2));
-            int t = stroi(split(input, ' ', 2, 3));;
-            int flag = stroi(split(input, ' ', 3, 4));;
+            int t = stroi(split(input, ' ', 2, 3));
+            int flag = stroi(split(input, ' ', 3, 4));
             Find(adjacencyList, verts, s - 1, t - 1, flag); // find the shortest path
         } else if(command == "write") {
             Write(adjacencyList, verts, edges); // write the graph to output
