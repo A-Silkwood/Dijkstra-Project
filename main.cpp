@@ -7,6 +7,13 @@
 
 const int INT_INF = 2147483647;
 
+void PrintPath(Vertex **list, int t) {
+    if(list[t]->pred != -1) {
+        PrintPath(list, list[t]->pred);
+    }
+    std::cout << t + 1 << ";";
+}
+
 // finds the shortest path from one to another
 // flag determines if it returns just the length or the path itself
 void Find(Vertex **list, int verts, int s, int t, int flag) {
@@ -23,9 +30,11 @@ void Find(Vertex **list, int verts, int s, int t, int flag) {
             // not reachable
             std::cout << "Error: node " << t + 1 << " not reachable from node " << s + 1 << std::endl;
         } else if(flag == 0) {
-
+            std::cout << "LENGTH: " << list[t]->dist << std::endl;
         } else if(flag == 1) {
-
+            std::cout << "Path: ";
+            PrintPath(list, list[t]->pred);
+            std::cout << t + 1 << std::endl;
         }
     }
 }
