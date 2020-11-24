@@ -7,59 +7,26 @@
 
 const int INT_INF = 2147483647;
 
-void PrintPath(Vertex **list, int t) {
-    PrintPath(list, list[t]->pred);
-    std::cout << t << ";";
-}
-
 // finds the shortest path from one to another
 // flag determines if it returns just the length or the path itself
 void Find(Vertex **list, int verts, int s, int t, int flag) {
-    if(s < 0 || s >= verts || t < 0 || t >= verts || (flag != 0 && flag != 1)) {
-        // invalid parameters
+    if(s < 0 || s >= verts || t < 0 || t >= verts || (flag != 0 && flag != 1)) { // invalid parameters given
+        // invalid nodes
         if (s < 0 || s >= verts || t < 0 || t >= verts) {std::cout << "Error: one or more invalid nodes" << std::endl;}
+        // invalid flag
         if (flag != 0 && flag != 1) {std::cout << "Error: invalid flag value" << std::endl;}
-    } else { // Dijkstra's Single Source Shortest Path Algorithm
-        InitSingleSource(list, verts, s);
-        Vertex **set = new Vertex*[verts];
-        Vertex **heap = new Vertex*[verts+1];
-        // insert all vertices into heap
-        for(int i = 0; i < verts; i++) {
-            heap[i] = list[i];
-        }
-        heap[verts] = NULL; // used to find end of heap
-        BuildMinHeap(heap, verts);
-
-        int i = 0;
-        while(heap[0] != NULL /* at least 1 vertex in heap */) {
-           Vertex *u = ExtractMin(heap);
-           set[i++] = u;
-           Edge *curr = u->edge;
-           while(curr != NULL) {
-               Relax(list, u->id-1, curr->target->id-1, curr->weight);
-               curr = curr->next;
-           }
-        }
-
+    } else {
+        // find shortest paths
+        Dijkstra(list, verts, s);
         // output
         if(list[t]->dist == INT_INF) {
-            // node was not reachable
-            std::cout << "Error: node " << t + 1 << "not reachable from node " << s + 1 << std::endl;
+            // not reachable
+            std::cout << "Error: node " << t + 1 << " not reachable from node " << s + 1 << std::endl;
         } else if(flag == 0) {
-            // flag zero just outputs length
-            std::cout << "Length: " << list[t]->dist << std::endl;
-        } else if(flag == 1) {
-            // flag one outputs shortest path found
-            std::cout << "Path: ";
-            PrintPath(list, list[t]->pred);
-            std::cout << t << std::endl;
-        }
 
-        // deallocate heap
-        for(int i = 0; i < verts+1; i++) {
-            if(heap[i] != NULL) {delete heap[i];}
+        } else if(flag == 1) {
+
         }
-        delete heap;
     }
 }
 
@@ -116,7 +83,7 @@ int main() {
 
     // create adjacency list
     Vertex **adjacencyList = new Vertex*[verts];
-    initAdjacencyList(adjacencyList, verts, edges);
+    InitAdjacencyList(adjacencyList, verts, edges);
 
     // read in commands
     while(true) {
