@@ -30,7 +30,7 @@ void Find(Vertex **list, int verts, int s, int t, int flag) {
             // not reachable
             std::cout << "Error: node " << t + 1 << " not reachable from node " << s + 1 << std::endl;
         } else if(flag == 1) {
-            std::cout << "LENGTH: " << list[t]->dist << std::endl;
+            std::cout << "Length: " << list[t]->dist << std::endl;
         } else if(flag == 0) {
             std::cout << "Path: ";
             if(t != -1) {PrintPath(list, list[t]->pred);}
