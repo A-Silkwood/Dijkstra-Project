@@ -70,7 +70,7 @@ void Dijkstra(Vertex **list, int verts, int s) {
     BuildMinHeap(Q, sizeQ);
 
     // find shortest paths
-    while(sizeQ != 0) {
+    while(sizeQ != 0 && Minimum(Q)->dist != INT_INF) {
         Vertex *u = ExtractMin(Q, sizeQ--);
         S[sizeS++] = u;
         // relax all adjacent vertices path
@@ -84,7 +84,6 @@ void Dijkstra(Vertex **list, int verts, int s) {
                     break;
                 }
             }
-
             if(!inSet) {Relax(list, u->id - 1, curr->target->id - 1, curr->weight);}
             curr = curr->next;
         }

@@ -2,7 +2,6 @@
 #include <string>
 
 #include "graph.h"
-#include "heap.h"
 #include "util.h"
 
 const int INT_INF = 2147483647;
