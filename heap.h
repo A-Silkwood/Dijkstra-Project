@@ -2,6 +2,7 @@
 
 #include "graph.h"
 
+// min-heap functions
 void BuildMinHeap(Vertex **heap, int n);
 void Insert(Vertex **heap, Vertex *vertex);
 Vertex* Minimum(Vertex **heap);

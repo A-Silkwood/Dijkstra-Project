@@ -3,6 +3,7 @@
 #include <sstream>
 
 // convert string to integer
+// str - string to convert
 int stroi(std::string str) {
     std::stringstream stream(str);
     int num;
@@ -11,6 +12,7 @@ int stroi(std::string str) {
 }
 
 // convert string to float
+// str - string to convert
 int strof(std::string str) {
     std::stringstream stream(str);
     float num;
@@ -19,6 +21,10 @@ int strof(std::string str) {
 }
 
 // split a string using a deliminator
+// str - string to split up
+// delim - deliminator character to split up string
+// start - starting deliminator to begin split at
+// end - ending deliminator to end split
 std::string split(std::string str, char delim, int start, int end) {
     // end and start are invalid or colliding
     if(end <= start) {return "";}
